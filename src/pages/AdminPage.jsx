@@ -12,11 +12,8 @@ const getTodayDateString = () => {
 };
 
 export default function AdminPage() {
-    // 1. Pega o token do nosso contexto de autenticação.
-    // É crucial para as chamadas da API.
     const { token } = useAuth();
 
-    // Estados da página
     const [dataSelecionada, setDataSelecionada] = useState(getTodayDateString());
     const [diasDisponiveis, setDiasDisponiveis] = useState([]);
     const [agendamentos, setAgendamentos] = useState([]);
@@ -24,7 +21,6 @@ export default function AdminPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // Efeito para gerar a lista de dias para o seletor (pulando domingos e segundas)
     useEffect(() => {
         const getProximosDiasUteis = () => {
             const dias = [];
@@ -41,14 +37,12 @@ export default function AdminPage() {
         getProximosDiasUteis();
     }, []);
 
-    // Efeito para buscar os dados da API sempre que a data ou o token mudarem
     useEffect(() => {
-        // Só tenta buscar se uma data foi selecionada E se temos um token
+
         if (dataSelecionada && token) {
             setLoading(true);
             setError('');
-
-            // 2. Prepara o cabeçalho de autorização que será usado em ambas as requisições
+            
             const headers = { 'Authorization': `Bearer ${token}` };
 
             const fetchAgendamentos = fetch(`http://localhost:8080/api/agendamentos?data=${dataSelecionada}`, { headers });
@@ -80,7 +74,7 @@ export default function AdminPage() {
                     setLoading(false);
                 });
         }
-    }, [dataSelecionada, token]); // Roda sempre que a data ou o token forem alterados
+    }, [dataSelecionada, token]);
 
 
     return (
