@@ -17,7 +17,6 @@ export default function AgendamentoPage() {
   const [diasDisponiveis, setDiasDisponiveis] = useState([]);
   const [servicosApi, setServicosApi] = useState([]);
 
-  // Função reutilizável para buscar horários ocupados
   const fetchOcupados = useCallback((dataSelecionada) => {
     if (dataSelecionada) {
       fetch(`http://localhost:8080/api/agendamentos/ocupados?data=${dataSelecionada}`)
@@ -29,7 +28,6 @@ export default function AgendamentoPage() {
     }
   }, []);
 
-  // Efeitos para buscar dados iniciais da API e gerar os dias
   useEffect(() => {
     fetch('http://localhost:8080/api/agendamentos/horarios-disponiveis')
       .then(response => response.json())
@@ -55,13 +53,11 @@ export default function AgendamentoPage() {
     getProximosDiasUteis();
   }, []);
 
-  // Efeito que busca os horários ocupados sempre que uma nova data é selecionada
   useEffect(() => {
     setHorarioSelecionado(null);
     fetchOcupados(data);
   }, [data, fetchOcupados]);
 
-  // Função para lidar com o envio do formulário de agendamento
   const handleAgendar = async (event) => {
     event.preventDefault();
     if (!user) {
@@ -81,7 +77,6 @@ export default function AgendamentoPage() {
       });
       if (response.ok) {
         toast.success('Agendamento realizado com sucesso!');
-        // A CORREÇÃO PRINCIPAL: Re-busca a lista de ocupados do backend
         fetchOcupados(data);
         setHorarioSelecionado(null);
       } else {
