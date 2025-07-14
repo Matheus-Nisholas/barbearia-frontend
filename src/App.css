@@ -100,6 +100,7 @@ h2 {
 /* ================================== */
 /* COMPONENTES (BOTÕES, FORMULÁRIOS)  */
 /* ================================== */
+
 .horarios-disponiveis, .form-agendamento form {
   display: flex;
   flex-direction: column;
@@ -210,19 +211,16 @@ h2 {
 /* ANIMAÇÕES E POLIMENTO DE UX              */
 /* ======================================== */
 
-/* Transições suaves para uma experiência mais fluida */
 button, a, input, select, .horarios-disponiveis, .form-agendamento {
   transition: all 0.3s ease-in-out;
 }
 
-/* Efeito de "flutuar" nos cards principais */
 .horarios-disponiveis:hover,
 .form-agendamento:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* Definição da animação de entrada */
 @keyframes fadeIn-up {
   from {
     opacity: 0;
@@ -234,14 +232,12 @@ button, a, input, select, .horarios-disponiveis, .form-agendamento {
   }
 }
 
-/* Definição da Animação de "Pulsar" para o botão CTA */
 @keyframes pulse-animation {
   0% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4); }
   50% { box-shadow: 0 5px 25px rgba(220, 53, 69, 0.7); }
   100% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4); }
 }
 
-/* Melhora o anel de foco para acessibilidade */
 input:focus-visible,
 select:focus-visible,
 button:focus-visible,
