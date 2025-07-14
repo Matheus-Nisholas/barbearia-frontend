@@ -1,0 +1,371 @@
+/* ================================== */
+/* FONTES E VARIÁVEIS GLOBAIS         */
+/* ================================== */
+
+@font-face {
+  font-family: 'Radiant Brush';
+  src: url('./assets/fonts/Radiant-Brush.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --cor-fundo: #f0f2f5;
+  --cor-superficie: #ffffff;
+  --cor-texto: #212529;
+  --cor-texto-secundaria: #6c757d;
+  --cor-primaria: #0d6efd;
+  --cor-primaria-hover: #0b5ed7;
+  --cor-borda: #dee2e6;
+  --cor-perigo: #dc3545;
+}
+
+/* ================================== */
+/* ESTILOS DE BASE E LAYOUT           */
+/* ================================== */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.agendamento-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+.agendamento-header {
+  text-align: center;
+  padding: 5rem 2rem;
+  margin-bottom: 3rem;
+}
+
+.agendamento-header h1 {
+  font-family: 'Radiant Brush', cursive;
+  font-size: 5.5rem;
+  color: var(--cor-texto);
+  margin: 0;
+  text-shadow: none;
+}
+
+.agendamento-header p {
+  font-family: 'Radiant Brush', cursive;
+  font-size: 1.6rem;
+  font-weight: normal;
+  color: var(--cor-texto-secundaria);
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.agendamento-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  animation: fadeIn-up 0.8s ease-in-out forwards;
+}
+
+.horarios-disponiveis,
+.form-agendamento {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--cor-superficie);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--cor-borda);
+}
+
+h2 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--cor-borda);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* ================================== */
+/* COMPONENTES (BOTÕES, FORMULÁRIOS)  */
+/* ================================== */
+.horarios-disponiveis, .form-agendamento form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.horarios-disponiveis label, .form-agendamento label {
+  font-weight: 500;
+  margin-bottom: -0.75rem;
+  font-size: 0.9rem;
+}
+
+.horarios-disponiveis input,
+.horarios-disponiveis select,
+.form-agendamento input,
+.form-agendamento select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background-color: #f8f9fa;
+  color: var(--cor-texto);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.lista-horarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.lista-horarios button {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-primaria);
+  background-color: transparent;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.lista-horarios button:hover:not(:disabled) {
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+.lista-horarios button.selecionado {
+  background-color: var(--cor-primaria-hover);
+  border-color: var(--cor-primaria-hover);
+  color: white;
+}
+
+.lista-horarios button.ocupado {
+  background-color: #f8f9fa;
+  color: var(--cor-texto-secundaria);
+  border-color: var(--cor-borda);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--cor-perigo), #e04453);
+  color: white;
+  padding: 15px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+  animation: pulse-animation 2.5s infinite;
+}
+
+.cta-button:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.6);
+  animation-play-state: paused;
+}
+
+.form-agendamento .botao-confirmar {
+  padding: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--cor-primaria);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.form-agendamento .botao-confirmar:hover:not(:disabled) {
+  background-color: var(--cor-primaria-hover);
+}
+
+.form-agendamento .botao-confirmar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* ======================================== */
+/* ANIMAÇÕES E POLIMENTO DE UX              */
+/* ======================================== */
+
+/* Transições suaves para uma experiência mais fluida */
+button, a, input, select, .horarios-disponiveis, .form-agendamento {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efeito de "flutuar" nos cards principais */
+.horarios-disponiveis:hover,
+.form-agendamento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Definição da animação de entrada */
+@keyframes fadeIn-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Definição da Animação de "Pulsar" para o botão CTA */
+@keyframes pulse-animation {
+  0% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4); }
+  50% { box-shadow: 0 5px 25px rgba(220, 53, 69, 0.7); }
+  100% { box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4); }
+}
+
+/* Melhora o anel de foco para acessibilidade */
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.35);
+}
+
+/* ================================== */
+/* BARRA DE ROLAGEM E RESPONSIVIDADE  */
+/* ================================== */
+
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--cor-fundo); }
+::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 10px;
+  border: 3px solid var(--cor-fundo);
+}
+::-webkit-scrollbar-thumb:hover { background-color: #7b7b7b; }
+
+@media (max-width: 768px) {
+  .agendamento-main { flex-direction: column; }
+  .agendamento-header h1 { font-size: 2.8rem; }
+  h2 { font-size: 1.5rem; }
+  .horarios-disponiveis,
+  .form-agendamento { padding: 1.5rem; }
+}
+
+/* ================================== */
+/* ESTILOS DO PAINEL DE ADMIN         */
+/* ================================== */
+
+.admin-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-content {
+  flex-grow: 1;
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.admin-controls {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-controls select {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  max-width: 300px; 
+  background-color: #f8f9fa;
+  color: var(--cor-texto);
+}
+
+.admin-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: var(--cor-superficie);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--cor-borda);
+  text-align: center;
+}
+
+.summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--cor-texto-secundaria);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.summary-card .summary-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.appointments-table-container {
+  background-color: var(--cor-superficie);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--cor-borda);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+  vertical-align: middle;
+}
+
+thead th {
+  color: var(--cor-texto-secundaria);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #f8f9fa;
+}

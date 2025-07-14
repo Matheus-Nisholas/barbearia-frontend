@@ -1,0 +1,39 @@
+.footer-section {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 3rem 5%;
+  margin-top: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-section h2 {
+  color: white;
+  border-bottom-color: #444;
+}
+
+.contato-info ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+  font-size: 1.1rem;
+}
+
+.contato-info strong {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #444;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}

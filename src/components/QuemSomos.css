@@ -1,0 +1,49 @@
+.quem-somos-section {
+  /* Propriedades para alinhar com o topo (já tínhamos) */
+  padding-top: 50px; /* Ajuste no padding para o título não ficar escondido */
+  margin-bottom: 3rem;
+
+  /* ---- ADICIONE ESTAS PROPRIEDADES PARA CRIAR O "CARD" ---- */
+  background-color: var(--cor-superficie); /* A mesma cor branca das outras seções */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--cor-borda);
+}
+
+.quem-somos-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap; 
+}
+
+.quem-somos-imagem {
+  flex: 1;
+  min-width: 250px;
+}
+
+.quem-somos-imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0, 0.1);
+}
+
+.quem-somos-texto {
+  flex: 2;
+}
+
+.quem-somos-texto h2 {
+  font-size: 2rem;
+  margin-top: 0;
+  border-bottom: 1px solid var(--cor-borda);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.quem-somos-texto p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--cor-texto-secundaria);
+}
