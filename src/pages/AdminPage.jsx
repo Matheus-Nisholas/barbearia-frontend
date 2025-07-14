@@ -3,7 +3,6 @@ import { useAuth } from '../contexts/AuthContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-// Função para obter a data de hoje no formato AAAA-MM-DD
 const getTodayDateString = () => {
     const today = new Date();
     const offset = today.getTimezoneOffset();
